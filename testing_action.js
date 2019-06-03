@@ -17,8 +17,12 @@ module.exports = {
 	getEpisodesFromSeries(series_id){
 		episode_data = JSON.parse(fs.readFileSync('assets/mocks/episode_data.json'));
 		return episode_data.filter(function(episode){
-				return episode.id.split("_")[0] === series_id.toString();
+				return episode.episode_id.split("_")[0] === series_id.toString();
 			});
 
+	},
+	getAllCategories(){
+		episode_data = JSON.parse(fs.readFileSync('assets/mocks/categories_data.json'));
+		return episode_data;
 	}
 }

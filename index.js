@@ -47,6 +47,14 @@ var endpoints = [
 		},
 		function(req, res){
 			res.send('Production not ready, set testing = true');
+		}),
+	new Endpoint(
+		'/getCategories',
+		function(req, res){
+			res.end(JSON.stringify(testing_action.getAllCategories()));
+		},
+		function(req, res){
+			res.send('Production not ready, set testing = true');
 		})
 	];
 

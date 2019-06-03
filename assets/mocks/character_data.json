@@ -2,32 +2,32 @@
 	{
 		"series_id" : 1,
 		"name": "Mark",
-		"id":101
+		"character_id":101
 	},
 	{
 		"series_id" : 1,
 		"name": "Jackson",
-		"id":104
+		"character_id":104
 	},
 	{
 		"series_id" : 1,
 		"name": "Mary",
-		"id":106
+		"character_id":106
 	},
 	{
 		"series_id" : 2,
 		"name": "Mark",
-		"id":107
+		"character_id":107
 	},
 	{
 		"series_id" : 2,
 		"name": "Jackson",
-		"id":108
+		"character_id":108
 	},
 	{
 		"series_id" : 2,
 		"name": "Mary",
-		"id":109
+		"character_id":109
 	}
 		
 ]
