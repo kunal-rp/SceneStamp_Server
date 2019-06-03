@@ -64,7 +64,7 @@ endpoints.forEach(function(endpoint){
 
 var server = app.listen(8081, function () {
    var host = server.address().address
-   var port = server.address().port
+   var port = process.env.PORT || server.address().port
    
    console.log("Scene Stamp Server Running @ http://%s:%s", host, port)
 })
