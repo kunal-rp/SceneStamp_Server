@@ -1,36 +1,12 @@
 [
 	{
-		series_id : 1,
-		series_info:{
-			name:"Tv show #1",
-			episodes:[
-				1_101,
-				1_102,
-				1_103
-			],
-			characters:[
-				101,
-				104,
-				106
-			]
-		}
+		"series_id" : 1,
+		"name":"Tv show #1"
 	},
 
 	{
-		series_id : 2,
-		series_info:{
-			name:"Tv show #2",
-			episodes:[
-				2_101,
-				2_102,
-				2_103
-			],
-			characters:[
-				107,
-				108,
-				109
-			]
-		}
-	},
+		"series_id" : 2,
+		"name":"Tv show #2"
+	}
 		
 ]

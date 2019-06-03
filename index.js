@@ -1,5 +1,5 @@
 var express = require('express');
-var fs = require('fs');
+var testing_action = require('./testing_action.js');
 var app = express();
 
 class Endpoint{
@@ -25,14 +25,30 @@ class Endpoint{
 
 var endpoints = [
 	new Endpoint(
-		'/getAllSeries',
+		'/getSeriesData',
 		function(req, res){
-			res.end(fs.readFileSync('assets/mocks/series_data.json'));
+			res.end(JSON.stringify(testing_action.getAllSeries()));
 		},
 		function(req, res){
-			res.send("production not ready yet, use testing");
+			res.send('Production not ready, set testing = true');
+		}),
+	new Endpoint(
+		'/getCharacterDataFromSeries',
+		function(req, res){
+			res.end(JSON.stringify(testing_action.getCharacterDataFromSeries(req.query.series_id)));
+		},
+		function(req, res){
+			res.send('Production not ready, set testing = true');
+		}),
+	new Endpoint(
+		'/getEpisodeDataFromSeries',
+		function(req, res){
+			res.end(JSON.stringify(testing_action.getEpisodesFromSeries(req.query.series_id)));
+		},
+		function(req, res){
+			res.send('Production not ready, set testing = true');
 		})
-];
+	];
 
 endpoints.forEach(function(endpoint){
 	app.get(endpoint.getUrl(), function(req, res){
@@ -50,5 +66,5 @@ var server = app.listen(8081, function () {
    var host = server.address().address
    var port = server.address().port
    
-   console.log("Example app listening at http://%s:%s", host, port)
+   console.log("Scene Stamp Server Running @ http://%s:%s", host, port)
 })
