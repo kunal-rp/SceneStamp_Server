@@ -11,18 +11,5 @@
 		"episode_id" : "1_103",
 		"title": "series 1 episode 3"
 	},
-
-	{
-		"episode_id" : "2_101",
-		"title": "series 2 episode 1"
-	},
-	{
-		"episode_id" : "2_102",
-		"title": "series 2 episode 2"
-	},
-	{
-		"episode_id" : "2_103",
-		"title": "series 2 episode 3"
-	}
 		
 ]

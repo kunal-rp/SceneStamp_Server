@@ -1,0 +1,43 @@
+[
+	{
+		"timestamp_id":"aaaa2",
+		"character_id":101
+	},
+	{
+		"timestamp_id":"aaaa2",
+		"character_id":104
+	},
+		{
+		"timestamp_id":"aaaa3",
+		"character_id":101
+	},
+		{
+		"timestamp_id":"aaaa4",
+		"character_id":104
+	},
+		{
+		"timestamp_id":"aaaa4",
+		"character_id":106
+	},
+		{
+		"timestamp_id":"aaaa6",
+		"character_id":101
+	},
+	{
+		"timestamp_id":"aaaa6",
+		"character_id":104
+	},
+		{
+		"timestamp_id":"aaaa7",
+		"character_id":101
+	},
+		{
+		"timestamp_id":"aaaa7",
+		"character_id":104
+	},
+		{
+		"timestamp_id":"aaaa8",
+		"character_id":106
+	}
+
+]
