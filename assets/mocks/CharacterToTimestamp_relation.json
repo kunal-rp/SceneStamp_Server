@@ -38,6 +38,30 @@
 		{
 		"timestamp_id":"aaaa8",
 		"character_id":106
+	},
+	{
+		"timestamp_id":"aaab1",
+		"character_id":107
+	},
+	{
+		"timestamp_id":"aaab1",
+		"character_id":108
+	},
+	{
+		"timestamp_id":"aaab2",
+		"character_id":109
+	},
+	{
+		"timestamp_id":"aaab2",
+		"character_id":108
+	}
+	{
+		"timestamp_id":"aaab3",
+		"character_id":107
+	},
+	{
+		"timestamp_id":"aaab3",
+		"character_id":109
 	}
 
 ]
