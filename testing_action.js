@@ -69,28 +69,25 @@ module.exports = {
 	},
 	queryForTimestamps(params){
 		var t = this;
-		//get all episodes from series id provided
-		//filter out for episodes thats provided
-
-		//get list of all episodes
-		//get all timestamps
-		//filter for categories
-		//filter for characters
 
 		if(params.series_id == null){
-			params.series_id = this.getAllSeries().map(function(series){return series.series_id});
+			series_data = this.getAllSeries();
+		}else{
+			series_data = this._getData(this.getAllSeries(), function(series){return series.series_id}, this._getArray(params.series_id).map(function(id){return parseInt(id);}));		
 		}
-		series_data = this._getData(this.getAllSeries(), function(series){return series.series_id}, this._getArray(params.series_id).map(function(id){return parseInt(id);}));
 		episode_ids = this.getEpisodesFromSeries(false, series_data.map(function(series){return series.series_id})).map(function(episode){return episode.episode_id});
-
 		timestamp_data = this.getTimestampsFromEpisode(false, episode_ids);
+
+		if(params.episode_id != null){
+			new_timestamp_data = this._getData(timestamp_data, function(timestamp){return timestamp.episode_id}, this._getArray(params.episode_id));
+			timestamp_data = new_timestamp_data;
+		}
 
 		if(params.character_id != null){
 			new_timestamp_data = timestamp_data.filter(function(timestamp){ 
 					return t._intersect(timestamp.characters, t._getArray(params.character_id).map(id => parseInt(id))).length > 0
 				});
 			timestamp_data = new_timestamp_data;
-
 		}
 
 		if(params.category_id != null){
