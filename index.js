@@ -43,7 +43,7 @@ var endpoints = [
 	new Endpoint(
 		'/getEpisodeDataFromSeries',
 		function(req, res){
-			res.end(JSON.stringify(testing_action.getEpisodesFromSeries(req.query.series_id)));
+			res.end(JSON.stringify(testing_action.getEpisodesFromSeries(true, req.query.series_id)));
 		},
 		function(req, res){
 			res.send('Production not ready, set testing = true');
@@ -59,7 +59,15 @@ var endpoints = [
 	new Endpoint(
 		'/getTimestampsFromEpisode',
 		function(req, res){
-			res.end(JSON.stringify(testing_action.getTimestampsFromEpisode(req.query.episode_id)));
+			res.end(JSON.stringify(testing_action.getTimestampsFromEpisode(true, req.query.episode_id)));
+		},
+		function(req, res){
+			res.send('Production not ready, set testing = true');
+		}),
+	new Endpoint(
+		'/queryForTimestamps',
+		function(req, res){
+			res.end(JSON.stringify(testing_action.queryForTimestamps(req.query)));
 		},
 		function(req, res){
 			res.send('Production not ready, set testing = true');
