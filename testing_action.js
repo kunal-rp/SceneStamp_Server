@@ -7,7 +7,7 @@ module.exports = {
 		return series_data;
 	},
 
-	getCharacterDataFromSeries(external, series_id){
+	getCharacterDataFromSeries(series_id){
 		return this._getData(
 			JSON.parse(fs.readFileSync('assets/mocks/character_data.json')),
 			function(character){
