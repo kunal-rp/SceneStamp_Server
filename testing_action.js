@@ -81,23 +81,26 @@ module.exports = {
 			params.series_id = this.getAllSeries().map(function(series){return series.series_id});
 		}
 		series_data = this._getData(this.getAllSeries(), function(series){return series.series_id}, this._getArray(params.series_id).map(function(id){return parseInt(id);}));
-		
 		episode_ids = this.getEpisodesFromSeries(false, series_data.map(function(series){return series.series_id})).map(function(episode){return episode.episode_id});
 
 		timestamp_data = this.getTimestampsFromEpisode(false, episode_ids);
 
 		if(params.character_id != null){
-			timestamp_data = timestamp_data.filter(
-				function(timestamp){ 
-					console.log(timestamp.timestamp_id," ", t._intersect(timestamp.characters, t._getArray(params.character_id).map(id => parseInt(id))).length !== 0 )
-					return t._intersect(timestamp.characters, t._getArray(params.character_id).map(id => parseInt(id))).length !== 0 
+			new_timestamp_data = timestamp_data.filter(function(timestamp){ 
+					return t._intersect(timestamp.characters, t._getArray(params.character_id).map(id => parseInt(id))).length > 0
 				});
+			timestamp_data = new_timestamp_data;
+
+		}
+
+		if(params.category_id != null){
+			new_timestamp_data = timestamp_data.filter(function(timestamp){ 
+					return t._intersect(timestamp.categories, t._getArray(params.category_id).map(id => parseInt(id))).length > 0
+				});
+			timestamp_data = new_timestamp_data;
 		}
 
 		return timestamp_data;
-
-
-
 	},
 	_getData(dataList, filterAction, list){
 		return dataList.filter(function(data){
@@ -108,15 +111,17 @@ module.exports = {
 		return parameter.split(',');
 	},
 	_intersect(a, b){
+		c = [...a];
+		d = [...b];
 		  var result = [];
-		  while( a.length > 0 && b.length > 0 )
+		  while( c.length > 0 && d.length > 0 )
 		  {  
-		     if      (a[0] < b[0] ){ a.shift(); }
-		     else if (a[0] > b[0] ){ b.shift(); }
+		     if      (c[0] < d[0] ){ c.shift(); }
+		     else if (c[0] > d[0] ){ d.shift(); }
 		     else /* they're equal */
 		     {
-		       result.push(a.shift());
-		       b.shift();
+		       result.push(c.shift());
+		       d.shift();
 		     }
 		  }
 		  return result;
