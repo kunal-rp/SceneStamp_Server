@@ -2,11 +2,11 @@ var fs = require('fs');
 
 module.exports = {
 
+	//Get methods
 	getAllSeries(){
 		series_data = JSON.parse(fs.readFileSync('assets/mocks/series_data.json','utf8'));
 		return series_data;
 	},
-
 	getCharacterDataFromSeries(series_id){
 		return this._getData(
 			JSON.parse(fs.readFileSync('assets/mocks/character_data.json')),
@@ -122,6 +122,38 @@ module.exports = {
 		     }
 		  }
 		  return result;
+	},
+
+	//Post methods
+	postNewSeries(name){
+		series_data = JSON.parse(fs.readFileSync('assets/mocks/series_data.json','utf8'));
+		var id = this._generateId(5);
+		while(series_data.filter(function(series){ return series.series_id === id}).length > 0){
+			id = this._generateId(5);
 		}
+		if(series_data.map(function(series){return series.name.toLowerCase()}).includes(name.toLowerCase())){
+			return this._generateError("series exists with same name");
+		}
+		var new_series = 
+			{
+				'series_id': id,
+				'name': name
+			};
+		series_data.push(new_series);
+		this._updateFile('assets/mocks/series_data.json', series_data);
+		return new_series	;
+	}, 
+
+	_generateId(length){
+		return (10 ^ (length-1)) + Math.floor( + Math.random() * 9 * (10 ^ (length-1)));
+	},
+	_updateFile(file, data, callback){
+		fs.writeFileSync(file, '');
+		fs.writeFileSync(file, JSON.stringify(data));
+
+	},
+	_generateError(desc){
+		return {'error':desc};
+	}
 }
 
