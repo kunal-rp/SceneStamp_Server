@@ -126,7 +126,8 @@ module.exports = {
 
 	//Post methods
 	postNewSeries(name){
-		if(name === null){
+		console.log(name)
+		if(typeof name !== String){
 			return this._generateError('series name must be provided');
 		}
 		series_data = JSON.parse(fs.readFileSync('assets/mocks/series_data.json','utf8'));
