@@ -126,6 +126,9 @@ module.exports = {
 
 	//Post methods
 	postNewSeries(name){
+		if(name === null){
+			return this._generateError('series name must be provided');
+		}
 		series_data = JSON.parse(fs.readFileSync('assets/mocks/series_data.json','utf8'));
 		var id = this._generateId(5);
 		while(series_data.filter(function(series){ return series.series_id === id}).length > 0){
