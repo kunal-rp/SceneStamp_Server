@@ -126,7 +126,6 @@ module.exports = {
 
 	//Post methods
 	postNewSeries(name){
-		console.log(name)
 		if(typeof name !== String){
 			return this._generateError('series name must be provided');
 		}
@@ -145,8 +144,32 @@ module.exports = {
 			};
 		series_data.push(new_series);
 		this._updateFile('assets/mocks/series_data.json', series_data);
-		return new_series	;
+		return new_series;
 	}, 
+
+	postNewEpisode(episode, series_id, title){
+
+		if( title == undefined  || series_id  == undefined   || title == undefined ){
+			return this._generateError('series id / title / episode must be provided');
+		}
+		series_data = JSON.parse(fs.readFileSync('assets/mocks/series_data.json','utf8'));
+		if(!series_data.map(function(series){ return series.series_id}).includes(series_id)){
+			return this._generateError('invalid series_id');
+		}
+		var new_episode_id = series_id.toString()+"_"+ episode;
+		episode_data = this.getEpisodesFromSeries(false, [series_id]);
+		if(episode_data.map(function(episode){return episode.episode_id.toString()}).includes(new_episode_id.toString()) || episode_data.map(function(episode){return episode.title.toLowerCase()}).includes(title.toLowerCase())){
+			return this._generateError('passed series has episode with same title/episode number');
+		}
+		var new_episode = {
+			"episode_id" : new_episode_id,
+			"title": title
+		};
+		var episode_data = this.getEpisodesFromSeries(false, this.getAllSeries().map(function(series){return series.series_id}));
+		episode_data.push(new_episode);
+		this._updateFile('assets/mocks/episode_data.json',episode_data);
+		return new_episode;
+	},
 
 	_generateId(length){
 		return (10 ^ (length-1)) + Math.floor( + Math.random() * 9 * (10 ^ (length-1)));
